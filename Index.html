@@ -3,218 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Women's Day!</title>
+    <title>A Gift For You ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        body { 
-            background: #ffebee; 
-            text-align: center; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            overflow-x: hidden; 
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffeef2;
+            background-image: url('garden.jpg'); /* Make sure your garden photo is named garden.jpg */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
-        
-        /* ++ MORE & DEEPER FLOATING HEARTS ++ */
-        .hearts-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
-        .heart-float { 
-            position: absolute; 
-            color: #ec407a; 
-            font-size: 25px; /* ++ Size increase ++ */
-            animation: float 5s linear infinite; /* ++ Faster animation ++ */
-            opacity: 0; 
-            filter: drop-shadow(0 2px 4px rgba(236, 64, 122, 0.5)); /* ++ Soft glow ++ */
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.3);
+            width: 90%;
+            max-width: 450px;
+            border: 5px solid #F48FB1;
+            text-align: center;
+            position: relative;
         }
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
-        }
-
-        .container { max-width: 900px; margin: 30px auto; padding: 20px; }
-        
-        .header-card { 
-            background: white; padding: 30px; border-radius: 25px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 30px;
-            border: 2px solid #f06292;
-        }
-
-        /* ++ NEW MUSIC PLAYER STYLING ++ */
-        .music-player { 
-            margin-bottom: 20px; 
-            background: rgba(255, 255, 255, 0.7); 
-            padding: 10px; 
-            border-radius: 50px; 
-            display: inline-block; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-        }
-        audio { height: 35px; outline: none; }
-        audio::-webkit-media-controls-panel { background-color: #fce4ec; }
-        audio::-webkit-media-controls-play-button { color: #ad1457; }
-
-        /* ++ UPDATED GRID & BANNERS (FIXES CROPPING) ++ */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 20px 0;
-            justify-items: center;
-        }
-        
-        /* The container holding the picture and its banner */
-        .image-wrapper { 
-            position: relative; 
-            width: 100%; 
-            max-width: 300px;
-            border-radius: 15px; 
-            border: 5px solid white; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-            overflow: visible; /* ++ Essential to let banners extend ++ */
-        }
-        .image-wrapper:hover { transform: scale(1.05) translateY(-5px); }
-
-        /* ++ THE BANNER STYLE ++ */
-        .photo-banner {
-            position: absolute;
-            top: -15px; /* ++ Slight upward offset ++ */
-            left: 50%;
-            transform: translateX(-50%);
-            background: #ad1457;
+        h2, h3, p { color: #E91E63; margin: 15px 0; }
+        .hidden { display: none; }
+        .mocha-gif { width: 100%; max-width: 200px; border-radius: 15px; margin-bottom: 15px; }
+        button {
+            background-color: #E91E63;
             color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            white-space: nowrap; /* ++ Keeps text on one line ++ */
-            z-index: 10; /* ++ Above the image ++ */
-            letter-spacing: 0.5px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
         }
-
-        .image-wrapper img { 
-            width: 100%; 
-            height: auto; /* ++ THIS KEEPS INSTA POSTS UN-CROPPED ++ */
-            border-radius: 12px; 
-            display: block;
-        }
-
-        .message-box { 
-            background: #ad1457; color: white; padding: 30px; 
-            border-radius: 20px; text-align: left; margin-top: 20px;
-            line-height: 1.8; font-size: 1.1rem;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
-        }
-
-        h1 { color: #880e4f; font-size: 2.8rem; margin-bottom: 5px; }
-        .footer { margin-top: 40px; color: #880e4f; font-weight: bold; }
+        .btn-no { background-color: #F8BBD0; color: #C2185B; position: fixed; z-index: 1000; }
+        .hearts-row { display: flex; justify-content: space-around; margin: 20px 0; }
+        .heart-icon { font-size: 55px; cursor: pointer; transition: 0.3s; }
+        .heart-icon:hover { transform: scale(1.2); }
+        .msg-box { background: #FFF0F5; padding: 15px; border-radius: 20px; margin: 10px 0; border: 1px solid #F8BBD0; color: #E91E63; font-size: 1.1rem; }
     </style>
 </head>
 <body>
 
-    <div class="hearts-container" id="hearts"></div>
+    <div id="page1" class="container">
+        <img src="waving mocha.gif" class="mocha-gif"> 
+        <h2>Will you date me?</h2>
+        <button onclick="nextPage(2)">Yes!</button>
+        <button id="noBtn" class="btn-no" onmouseover="moveNo()">No</button>
+    </div>
 
-    <div class="container">
-        <div class="header-card">
-            <h1>Happy Women's Day! 🌸</h1>
-            <p style="font-size: 1.3rem; color: #ec407a;">Celebrating you, every single day.</p>
-            
-            <div class="music-player">
-    <button id="playBtn" style="background: #ad1457; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold;">
-        Click to Start the Surprise 🎵
-    </button>
-    <audio id="myAudio">
-        <source src="perfect.mpeg" type="audio/mpeg">
-    </audio>
-</div>
+    <div id="page2" class="container hidden">
+        <img src="Ecited mocha.gif" class="mocha-gif"> 
+        <h3>Ohh, so you are interested in me? 😉</h3>
+        <button onclick="nextPage(3)">Open My Gift ❤️</button>
+    </div>
 
-<script>
-    const btn = document.getElementById('playBtn');
-    const audio = document.getElementById('myAudio');
-
-    btn.addEventListener('click', function() {
-        audio.play();
-        btn.style.display = 'none'; // This hides the button after she clicks it
-    });
-</script>        </div>
-
-        <div class="gallery-grid">
-            
-            <div class="image-wrapper">
-                <div class="photo-banner">Your Smile ✨</div>
-                <img src="photo1.jpeg" alt="Memory 1">
-            </div>
-
-            <div class="image-wrapper">
-                <div class="photo-banner">Your cheeks ❤️</div>
-                <img src="photo2.jpeg" alt="Memory 2">
-            </div>
-
-            <div class="image-wrapper">
-                <div class="photo-banner">So Proud of You! 🌸</div>
-                <img src="photo3.jpeg" alt="Memory 3">
-            </div>
-
-            <div class="image-wrapper">
-                <div class="photo-banner">your eyes 🌟</div>
-                <img src="photo4.jpeg" alt="Memory 4">
-            </div>
-
-            <div class="image-wrapper">
-                <div class="photo-banner">Keep Shining! 💖</div>
-                <img src="photo5.jpeg" alt="Memory 5">
-            </div>
-
-            <div class="image-wrapper">
-                <div class="photo-banner">Always & Forever! ✨</div>
-                <img src="photo6.jpeg" alt="Memory 6">
-            </div>
-
+    <div id="page3" class="container hidden">
+        <h2 id="title">Your Gift Hamper</h2>
+        <div id="heartsRow" class="hearts-row">
+            <div class="heart-icon" id="h1" onclick="pop('h1','m1')">❤️</div>
+            <div class="heart-icon" id="h2" onclick="pop('h2','m2')">💖</div>
+            <div class="heart-icon" id="h3" onclick="pop('h3','m3')">💝</div>
         </div>
+        <div id="m1" class="msg-box hidden">I love you is the most beautiful sentence. It begins with I, ends with you, and there is only love in between us 🌸</div>
+        <div id="m2" class="msg-box hidden">Born too late to see dinosaurs, too early to see flying cars, but just in time to meet you. ✨</div>
+        <div id="m3" class="msg-box hidden">I like it when you smile, but I love it when I am the reason ❤️</div>
+        
+        <button id="finalBtn" class="hidden" onclick="finish()">The Last Surprise</button>
 
-        <div class="message-box">
-            <h3>To My Spoorti,</h3>
-            <p>I wanted to take a moment today to tell you how much I admire you. Whether it’s your dedication to your goals, the way you care for everyone around you, or just how you light up a room—you are incredible.</p>
-            <p>Today is a reminder of the power and grace women bring to the world, and you are the best example of that I have ever seen.</p>
-            <p>Keep shining, keep growing, and never forget how much you are loved.</p>
-             Dearest [🐹], <br><br>
-                    I just wanna tell you are the most beautiful person i ever meet
-                    <br>
-                    i am so grateful to have you in my life my dear hamster
-                    <br>
-                    All i want is you to be happy and successful no matter what
-                    <br>
-                    i will always be on your side if world is against you i am against 
-                    the world.
+        <div id="finalMocha" class="hidden">
+            <img src="kissing mocha.gif" style="width:280px; border-radius:20px;">
+            <h2 style="font-size: 2.5rem; margin-top: 10px;">MUAH! 💋</h2>
         </div>
-<div style="margin-top: 30px; animation: pulse 2s infinite;">
-    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ6eGZ6eGZ6eGZ6eGZ6eGZ6eGZ6eGZ6eGZ6eGZ6eGZ6JnB2PTE/3M4NpbLCTxBqU/giphy.gif" 
-         alt="Tight Hug" 
-         style="width: 200px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-    <p style="color: #ad1457; font-weight: bold; font-size: 1.2rem;">A Virtual Tight Hug for You! 🤗</p>
-</div>
-        <div class="footer">Created with ❤️ by Ronit</div>
     </div>
 
     <script>
-        // ++ UPDATED SCRIPTS: INCREASES HEART INTENSITY & ADDED PULSING ANIMS ++
-        const container = document.getElementById('hearts');
-        
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart-float');
-            heart.innerHTML = '❤';
-            heart.style.left = Math.random() * 100 + 'vw';
-            
-            // Randomize size and animation duration for intensity
-            const randomSize = Math.random() * 20 + 20; // Size from 20px to 40px
-            heart.style.fontSize = randomSize + 'px';
-            heart.style.animationDuration = (Math.random() * 3 + 2.5) + 's'; // 2.5s to 5.5s (faster)
-
-            container.appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
+        let count = 0;
+        function nextPage(n) {
+            document.querySelectorAll('.container').forEach(c => c.classList.add('hidden'));
+            document.getElementById('page'+n).classList.remove('hidden');
+            if(n===2) confetti();
         }
-        
-        // ++ INTERVAL: Decreased time between hearts for MORE intensity ++
-        setInterval(createHeart, 250); // Generates hearts almost twice as fast
+        function moveNo() {
+            const b = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - b.offsetWidth);
+            const y = Math.random() * (window.innerHeight - b.offsetHeight);
+            b.style.left = x + 'px';
+            b.style.top = y + 'px';
+        }
+        function pop(h, m) {
+            document.getElementById(h).style.visibility = 'hidden';
+            document.getElementById(m).classList.remove('hidden');
+            count++;
+            if(count===3) document.getElementById('finalBtn').classList.remove('hidden');
+        }
+        function finish() {
+            document.getElementById('finalMocha').classList.remove('hidden');
+            document.getElementById('finalBtn').style.display = 'none';
+            document.getElementById('heartsRow').style.display = 'none';
+            document.getElementById('title').style.display = 'none';
+            document.querySelectorAll('.msg-box').forEach(m => m.style.display = 'none');
+            confetti({particleCount: 200, spread: 100});
+        }
     </script>
 </body>
 </html>
-
